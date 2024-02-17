@@ -81,6 +81,18 @@ const room = {
             y: ran.irandom(room.height),
         };
     };
+    room.pesti = () => {
+        return {
+            x: 500,
+            y: 500,
+        };
+    };
+    room.pesti2 = () => {
+        return {
+            x: 600,
+            y: 600,
+        };
+    };
     room.randomType = type => {
         let selection = room[type][ran.irandom(room[type].length-1)];
         return {
@@ -5244,7 +5256,7 @@ var maintainloop = (() => {
         for (let i=Math.ceil(roidcount * 0.3); i; i--) { count++; placeRoid('roid', Class.babyObstacle); }
         for (let i=Math.ceil(rockcount * 0.8); i; i--) { count++; placeRoid('rock', Class.obstacle); }
         for (let i=Math.ceil(rockcount * 0.5); i; i--) { count++; placeRoid('rock', Class.babyObstacle); }
-        util.log('Placing ' + count + ' obstacles!');
+      //  util.log('Placing ' + count + ' obstacles!');
     }
     placeRoids();
     // Spawning functions
@@ -5301,7 +5313,7 @@ var maintainloop = (() => {
                 util.log('[SPAWN] Preparing to spawn...');
                 timer = 0;
                 let choice = [];
-                switch (ran.chooseChance(20, 2, 1, 5, 5, 7)) {
+                switch (ran.chooseChance(20, 2, 1, 5, 5, 5)) {
                     case 0: 
                         choice = [[Class.kingsurfernew,Class.velocity,], 1, 'a', 'nest'];
 sockets.broadcast('...');
@@ -5328,16 +5340,16 @@ case 4:
                         sockets.broadcast('The stars align and the apocalypse begins!');
                           sockets.broadcast('The titans have been reborn!');
                     Class.triforce.team = 200;
-                           let a = new Entity(room.random());                 
+                           let a = new Entity(room.pesti());                 
                     a.define(Class.pestilenceboss,);
       a.team = 200;
-       let b = new Entity(room.random());                 
+       let b = new Entity(room.pesti());                 
                     b.define(Class.pestilenceboss2,);
             b.team = 200;
-       let c = new Entity(room.random());                 
+       let c = new Entity(room.pesti2());
                     c.define(Class.pestilenceboss3,);
                   c.team = 200;
-       let d = new Entity(room.random());                 
+       let d = new Entity(room.pesti2());                 
                     d.define(Class.pestilenceboss4,);
                   d.team = 200;
                         break;
@@ -5677,16 +5689,17 @@ var speedcheckloop = (() => {
         global.fps = (1000/sum).toFixed(2);
         if (sum > 1000 / roomSpeed / 30) { 
             //fails++;
-            util.warn('~~ LOOPS: ' + loops + '. ENTITY #: ' + entities.length + '//' + Math.round(active/loops) + '. VIEW #: ' + views.length + '. BACKLOGGED :: ' + (sum * roomSpeed * 3).toFixed(3) + '%! ~~');
-            util.warn('Total activation time: ' + activationtime);
-            util.warn('Total collision time: ' + collidetime);
-            util.warn('Total cycle time: ' + movetime);
-            util.warn('Total player update time: ' + playertime);
-            util.warn('Total lb+minimap processing time: ' + maptime);
-            util.warn('Total entity physics calculation time: ' + physicstime);
-            util.warn('Total entity life+thought cycle time: ' + lifetime);
-            util.warn('Total entity selfie-taking time: ' + selfietime);
-            util.warn('Total time: ' + (activationtime + collidetime + movetime + playertime + maptime + physicstime + lifetime + selfietime));
+            // util.warn('~~ LOOPS: ' + loops + '. ENTITY #: ' + entities.length + '//' + Math.round(active/loops) + '. VIEW #: ' + views.length + '. BACKLOGGED :: ' + (sum * roomSpeed * 3).toFixed(3) + '%! ~~');
+           util.warn('quandale');
+          // util.warn('Total activation time: ' + activationtime);
+            // util.warn('Total collision time: ' + collidetime);
+            // util.warn('Total cycle time: ' + movetime);
+            // util.warn('Total player update time: ' + playertime);
+            // util.warn('Total lb+minimap processing time: ' + maptime);
+            // util.warn('Total entity physics calculation time: ' + physicstime);
+            // util.warn('Total entity life+thought cycle time: ' + lifetime);
+            // util.warn('Total entity selfie-taking time: ' + selfietime);
+            // util.warn('Total time: ' + (activationtime + collidetime + movetime + playertime + maptime + physicstime + lifetime + selfietime));
             if (fails > 60) {
                 util.error("FAILURE!");
                 //process.exit(1);
